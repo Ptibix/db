@@ -10,12 +10,14 @@ GO
 -- Visszaadja mely hibák lettek javítva, ki által és mivel
 
   SELECT * FROM dbo.viewMeasurementRepair 
-  --where Unit_id=998877
+  --where Unit_id=998877									-- Egység alapján szûrés
+  --where User_name='VLaszlone'								-- Dolgozó alapján szûrés
   GO
 
   -- Az 1 hónapnál nem régebbi Date_Start orderkeben milyen egységek vannak, melyik állomáson, anyagszámmal
 
  SELECT * FROM dbo.viewOneMounthOrderUnit
+ --where operation_id !=190									-- Mely egységek nem utolsó állomáson állnak
  GO
 
  --Melyek azok az egységek amelyek nem utolsó állomáson állnak és az order planned enden már túl vagyunk.

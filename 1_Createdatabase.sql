@@ -385,34 +385,7 @@ AS
 			END														-- Jogok If zárása
 		Print'Nincs megfelelõ jog!'
 	GO
-/*
 
--- Futtatások:
-
--- Mode 1 meghívás - Ehhez tudni kell egy még nem lejavított Measurement ID-t.
-
-EXEC dbo.InsertRepair @Mode=1 ,@Unit_id='998877' ,@Repair_code=4 ,@User_id=21 ,@Mea_id=11	-- Hibás bevitel
-
--- Mode 1 mûködõ teszt
--- Beszúrás a MEASUREMNT táblába:
-INSERT INTO MEASUREMENT(Unit_id,Operation_id,Measure_name,Measure_result,Unitofmeasure,Evaluation,Measure_date) VALUES('A9B857',180,'C2','1,9','nF','Fail',Getdate())
-DECLARE @ID int										-- Measurement ID megszerzése a SET.
-SET @ID= (select max(Measure_id) from MEASUREMENT)  --Mivel minden insert után ez automatikusan más lesz, így az eljárás meghívható, nem fut hibára.
-EXEC dbo.InsertRepair @Mode=1 ,@Unit_id='A9B857' ,@Repair_code=4 ,@User_id=21 ,@Mea_id=@ID -- Eljárás hívás a beszúrás adatai alapján
-select * from MEASUREMENT where Measure_id=@ID		-- Ellenõrzés
-GO
-
-
--- Mode 2 meghívás - Ehhez tudni kell egy le nem javított Operáció_id és Measure name és csak 1-szer legyen a MEASUREMENT táblában!
-EXEC dbo.InsertRepair @Mode=2 ,@Unit_id='998877' ,@Repair_code=4 ,@User_id=21 ,@Op_id=140 ,@Mea_name='D1' -- Hibás bevitel, már létezik ez a javítás
-
--- Mode 2 mûködõ teszt:
--- Beszúrás a MEASUREMNT táblába:
-INSERT INTO MEASUREMENT(Unit_id,Operation_id,Measure_name,Measure_result,Unitofmeasure,Evaluation,Measure_date) VALUES('A9B857',140,'C1','1,91','nF','Fail',Getdate())
-EXEC dbo.InsertRepair @Mode=2 ,@Unit_id='A9B857' ,@Repair_code=4 ,@User_id=21 ,@Op_id=140 ,@Mea_name='C1' -- Eljárás hívás a beszúrás adatai alapján
-select * from MEASUREMENT where Unit_id='A9B857' and Operation_id=140 and Measure_name='C1'		-- Ellenõrzés
-GO
-*/
 
 -- Eljárás eldobása:
 -- DROP PROCEDURE dbo.InsertRepair
@@ -420,7 +393,7 @@ GO
 
 -- Harmadik eljárás
 
--- Új felhsználó felvitele az USER táblába a jog nevének, a leendõ felhasználónév (egyedi kell legyen), valós név és ágazat megadásával.
+-- Új felhasználó felvitele az USER táblába a jog nevének, a leendõ felhasználónév (egyedi kell legyen), valós név és ágazat megadásával.
 
 USE Factory
 GO
@@ -676,7 +649,7 @@ GO
 USE [master]
 GO
 
-CREATE LOGIN [SMT Service] WITH PASSWORD=N'SMTSERVICE', DEFAULT_DATABASE=[Factory], DEFAULT_LANGUAGE=[magyar], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF
+CREATE LOGIN [SMT Service] WITH PASSWORD=N'SMTSERVICE', DEFAULT_DATABASE=[Factory], DEFAULT_LANGUAGE=[us_english], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF
 GO
 
 
@@ -833,7 +806,7 @@ GO
 
 USE [master]
 GO
-CREATE LOGIN [Processreader] WITH PASSWORD=N'PROCESSREADER', DEFAULT_DATABASE=[master], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF
+CREATE LOGIN [Processreader] WITH PASSWORD=N'PROCESSREADER', DEFAULT_DATABASE=[Factory], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF
 GO
 use [Factory];
 GO
