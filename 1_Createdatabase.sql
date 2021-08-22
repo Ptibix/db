@@ -1033,10 +1033,10 @@ GO
 BACKUP DATABASE [msdb] TO  DISK = N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\Backup\msdb.bak' WITH NOFORMAT, NOINIT,  NAME = N'msdb-Full Database Backup', SKIP, NOREWIND, NOUNLOAD,  STATS = 10
 GO
 
--- ***** Adatbázis visszaállítás kiindulási állapotból *****
+-- ***** Adatbázis visszaállítás kiindulási állapotból (az adatbázis nem létezik még feltétel) *****
 /*
 USE [master]
-BACKUP LOG [Factory] TO  DISK = N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\Backup\Factory_LogBackup_2021-08-21_17-14-39.bak' WITH NOFORMAT, NOINIT,  NAME = N'Factory_LogBackup_2021-08-21_17-14-39', NOSKIP, NOREWIND, NOUNLOAD,  NORECOVERY ,  STATS = 5
+--BACKUP LOG [Factory] TO  DISK = N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\Backup\Factory_LogBackup_2021-08-21_17-14-39.bak' WITH NOFORMAT, NOINIT,  NAME = N'Factory_LogBackup_2021-08-21_17-14-39', NOSKIP, NOREWIND, NOUNLOAD,  NORECOVERY ,  STATS = 5
 RESTORE DATABASE [Factory] FROM  DISK = N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\Backup\Factory0821.bak' WITH  FILE = 1,  NOUNLOAD,  STATS = 5
 
 GO
