@@ -1,8 +1,8 @@
-
+/*
 USE master
 DROP DATABASE IF EXISTS Factory
 GO 
-
+*/
 
 -- ***** Adatbázis elkészítés *****
 
@@ -822,8 +822,8 @@ ALTER ROLE [Processread] ADD MEMBER [Processreader]
 GO
 
 
--- Mindezeken kívûl, a fehasználóknak létezniük kell az USERS táblában és jogaiknak lenni a RIGHTS táblában a teljeskörû használathoz
--- A táblák megövetelik ezek meglétét mert van ilyen oszlopuk Pl.:Process,Repair
+-- Mindezeken kívûl, a fehasználóknak létezniük kell az USERS táblában és jogaiknak kell lenni a RIGHTS táblában a teljeskörû használathoz
+-- A táblák megkövetelik ezek meglétét, mert van ilyen oszlopuk Pl.:Process,Repair
 
 
 -- ***** Backup job-ok beállítása *****
